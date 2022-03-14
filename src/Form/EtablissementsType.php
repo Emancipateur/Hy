@@ -2,28 +2,28 @@
 
 namespace App\Form;
 
-use App\Entity\Gerants;
+use App\Entity\Etablissements;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class GerantsType extends AbstractType
+class EtablissementsType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email')
-            // ->add('roles')
-            ->add('password')
             ->add('nom')
-            ->add('prenom')
+            ->add('ville')
+            ->add('adresse')
+            ->add('description')
+            ->add('gerant')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Gerants::class,
+            'data_class' => Etablissements::class,
         ]);
     }
 }
