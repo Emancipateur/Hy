@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Suites{% endblock %}
+
+{% block body %}
+    <h1>Suites</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ suite.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ suite.titre }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ suite.description }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ suite.prix }}</td>
+            </tr>
+            <tr>
+                <th>Lien</th>
+                <td>{{ suite.lien }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_suites_index') }}">back to list</a>
+
+    <a href="{{ path('app_suites_edit', {'id': suite.id}) }}">edit</a>
+
+    {{ include('suites/_delete_form.html.twig') }}
+{% endblock %}

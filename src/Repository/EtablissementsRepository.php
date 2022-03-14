@@ -48,11 +48,11 @@ class EtablissementsRepository extends ServiceEntityRepository
     // /**
     //  * @return Etablissements[] Returns an array of Etablissements objects
     //  */
-    /*
-    public function findByExampleField($value)
+
+    public function findByGerant($value)
     {
         return $this->createQueryBuilder('e')
-            ->andWhere('e.exampleField = :val')
+            ->andWhere('e.gerant = :val')
             ->setParameter('val', $value)
             ->orderBy('e.id', 'ASC')
             ->setMaxResults(10)
@@ -60,7 +60,7 @@ class EtablissementsRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?Etablissements

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Suites index{% endblock %}
+
+{% block body %}
+    <h1>Suites index</h1>
+{% for suite in suites %}
+    
+   {% for i in suite.images %}
+<img src="{{ asset('/uploads/'~i.titre) }}" alt="" width="150">
+    {% endfor %}
+{% endfor %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Prix</th>
+                <th>Lien</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for suite in suites %}
+            <tr>
+                <td>{{ suite.id }}</td>
+                <td>{{ suite.titre }}</td>
+                <td>{{ suite.description }}</td>
+                <td>{{ suite.prix }}</td>
+                <td>{{ suite.lien }}</td>
+                <td>
+                    <a href="{{ path('app_suites_show', {'id': suite.id}) }}">show</a>
+                    <a href="{{ path('app_suites_edit', {'id': suite.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_suites_new') }}">Create new</a>
+{% endblock %}

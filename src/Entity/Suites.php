@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SuitesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SuitesRepository::class)]
@@ -27,6 +29,14 @@ class Suites
 
     #[ORM\ManyToOne(targetEntity: Etablissements::class, inversedBy: 'suite')]
     private $etablissements;
+
+    #[ORM\OneToMany(mappedBy: 'suite', targetEntity: Images::class, cascade: ['persist'])]
+    private $images;
+
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -89,6 +99,36 @@ class Suites
     public function setEtablissements(?Etablissements $etablissements): self
     {
         $this->etablissements = $etablissements;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Images>
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Images $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setSuite($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Images $image): self
+    {
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getSuite() === $this) {
+                $image->setSuite(null);
+            }
+        }
 
         return $this;
     }

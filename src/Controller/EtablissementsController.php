@@ -21,6 +21,16 @@ class EtablissementsController extends AbstractController
         ]);
     }
 
+    #[Route('/a', name: 'app_etablissements_a', methods: ['GET'])]
+    public function a(EtablissementsRepository $etablissementsRepository): Response
+    {
+
+       $etablissement = $etablissementsRepository->findByGerant($this->getUser()->getId());
+        return $this->render('etablissements/etablissement.html.twig', [
+            'etablissement' => $etablissement,
+        ]);
+    }
+
     #[Route('/new', name: 'app_etablissements_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EtablissementsRepository $etablissementsRepository): Response
     {

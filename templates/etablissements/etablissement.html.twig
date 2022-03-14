@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Etablissements index{% endblock %}
+
+{% block body %}
+  {% for etablissement in etablissement %}
+    <h1>{{ etablissement.nom }}</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+            
+                <th>Ville</th>
+                <th>Adresse</th>
+                <th>Description</th>
+          
+            </tr>
+        </thead>
+        <tbody>
+      
+              
+            <tr>
+                <td>{{ etablissement.id }}</td>
+         
+                <td>{{ etablissement.ville }}</td>
+                <td>{{ etablissement.adresse }}</td>
+                <td>{{ etablissement.description }}</td>
+            </tr>
+      
+            {% endfor %}
+             
+        </tbody>
+    </table>
+    <div class="containerGerant">
+<h1>La Liste des suites</h1>
+   
+        {% for etablissement in etablissement %}
+            
+      
+        {% for suite in etablissement.suite %}
+           <div class="suiteGerant">
+                <h3>{{ suite.titre }}</h2>
+                <td>{{ suite.description }}</td>
+                <td>{{ suite.id }}</td>
+                <td>{{ suite.prix }}</td>
+                <td>{{ suite.lien }}</td>
+                <div class="imageSuiteGerant">
+                   {% for i in suite.images %}
+                    <img src="{{ asset('/uploads/'~i.titre) }}" alt="" width="300">
+                     {% endfor %}
+                     </div>
+           
+                    <a href="{{ path('app_suites_show', {'id': suite.id}) }}">show</a>
+                    <a href="{{ path('app_suites_edit', {'id': suite.id}) }}">edit</a>
+     </div>
+        {% endfor %}
+          {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_suites_new') }}">Create new</a>
+
+   </div>
+{% endblock %}
