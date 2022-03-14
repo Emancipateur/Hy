@@ -4,55 +4,41 @@
 
 {% block body %}
   {% for etablissement in etablissement %}
+  <div class="gerantEtablissement">
     <h1>{{ etablissement.nom }}</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-            
-                <th>Ville</th>
-                <th>Adresse</th>
-                <th>Description</th>
-          
-            </tr>
-        </thead>
-        <tbody>
       
               
-            <tr>
-                <td>{{ etablissement.id }}</td>
+        <div class="gerantEtablissementContent">
          
-                <td>{{ etablissement.ville }}</td>
-                <td>{{ etablissement.adresse }}</td>
-                <td>{{ etablissement.description }}</td>
-            </tr>
-      
+                <p>{{ etablissement.ville }} - {{ etablissement.adresse }}</p>
+           
+                <p>{{ etablissement.description }}</p>
+        </div>
+         
+          </div>
             {% endfor %}
              
-        </tbody>
-    </table>
-    <div class="containerGerant">
+
+    <div class="gerantContent">
 <h1>La Liste des suites</h1>
    
         {% for etablissement in etablissement %}
             
       
         {% for suite in etablissement.suite %}
-           <div class="suiteGerant">
+           <div class="gerantSuite">
                 <h3>{{ suite.titre }}</h2>
-                <td>{{ suite.description }}</td>
-                <td>{{ suite.id }}</td>
-                <td>{{ suite.prix }}</td>
-                <td>{{ suite.lien }}</td>
-                <div class="imageSuiteGerant">
+                <p>{{ suite.description }}</p>
+                <p>Tarif : {{ suite.prix }} € -     <a href="{{suite.lien}}">{{suite.lien}}</a></p>
+                <div class="gerantImageSuite">
                    {% for i in suite.images %}
-                    <img src="{{ asset('/uploads/'~i.titre) }}" alt="" width="300">
+                    <img src="{{ asset('/uploads/'~i.titre) }}" alt="" width="400">
                      {% endfor %}
                      </div>
            
-                    <a href="{{ path('app_suites_show', {'id': suite.id}) }}">show</a>
-                    <a href="{{ path('app_suites_edit', {'id': suite.id}) }}">edit</a>
+                    <a href="{{ path('app_suites_show', {'id': suite.id}) }}">Voir</a>
+                    <a href="{{ path('app_suites_edit', {'id': suite.id}) }}">Modifier</a>
      </div>
         {% endfor %}
           {% endfor %}

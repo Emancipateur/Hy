@@ -3,33 +3,43 @@
 {% block title %}Etablissements{% endblock %}
 
 {% block body %}
-    <h1>Etablissements</h1>
+  <div class="gerantEtablissement">
+    <h1>{{ etablissement.nom }}</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ etablissement.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ etablissement.nom }}</td>
-            </tr>
-            <tr>
-                <th>Ville</th>
-                <td>{{ etablissement.ville }}</td>
-            </tr>
-            <tr>
-                <th>Adresse</th>
-                <td>{{ etablissement.adresse }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ etablissement.description }}</td>
-            </tr>
-        </tbody>
-    </table>
+      
+              
+        <div class="gerantEtablissementContent">
+         
+                <p>{{ etablissement.ville }} - {{ etablissement.adresse }}</p>
+           
+                <p>{{ etablissement.description }}</p>
+        </div>
+         
+          </div>
+    
 
+    <div class="gerantContent">
+<h1>La Liste des suites</h1>
+   
+    
+            
+      
+        {% for suite in etablissement.suite %}
+           <div class="gerantSuite">
+                <h3>{{ suite.titre }}</h2>
+                <p>{{ suite.description }}</p>
+                <div class="gerantImageSuite">
+                   {% for i in suite.images %}
+                    <img src="{{ asset('/uploads/'~i.titre) }}" alt="" width="400">
+                     {% endfor %}
+                     </div>
+                <p>Tarif : {{ suite.prix }} € -     <a href="{{suite.lien}}">{{suite.lien}}</a></p>
+           
+                    <a href="{{ path('app_suites_show', {'id': suite.id}) }}">Voir</a>
+                    <a href="{{ path('app_suites_edit', {'id': suite.id}) }}">Modifier</a>
+     </div>
+   
+          {% endfor %}
     <a href="{{ path('app_etablissements_index') }}">back to list</a>
 
     <a href="{{ path('app_etablissements_edit', {'id': etablissement.id}) }}">edit</a>
