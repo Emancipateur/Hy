@@ -22,6 +22,9 @@ class Reservation
     #[ORM\ManyToOne(targetEntity: Suites::class, inversedBy: 'reservation')]
     private $suites;
 
+    #[ORM\ManyToOne(targetEntity: Clients::class, inversedBy: 'reservation')]
+    private $clients;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +62,18 @@ class Reservation
     public function setSuites(?Suites $suites): self
     {
         $this->suites = $suites;
+
+        return $this;
+    }
+
+    public function getClients(): ?Clients
+    {
+        return $this->clients;
+    }
+
+    public function setClients(?Clients $clients): self
+    {
+        $this->clients = $clients;
 
         return $this;
     }

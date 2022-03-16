@@ -42,7 +42,10 @@ class ReservationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
+            $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+            $client = $this->getUser();
+            $reservation->setClients($client);
             $reservationRepository->add($reservation);
             return $this->redirectToRoute('app_reservation_index', [], Response::HTTP_SEE_OTHER);
         }

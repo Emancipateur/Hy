@@ -7,6 +7,9 @@ security:
             algorithm: auto
         App\Entity\Gerants:
             algorithm: auto
+        App\Entity\Clients:
+            algorithm: auto
+
 
 
 
@@ -16,8 +19,9 @@ security:
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
-                class: App\Entity\Gerants
+                class: App\Entity\Clients
                 property: email
+        # used to reload user from session & other features (e.g. switch_user)
         # used to reload user from session & other features (e.g. switch_user)
     firewalls:
         dev:
@@ -30,6 +34,7 @@ security:
             form_login:
                 # "login" is the name of the route created previously
                 login_path: login
+                use_referer: true
                 check_path: login    
                 enable_csrf: true       
 
