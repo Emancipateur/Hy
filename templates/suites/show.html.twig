@@ -3,36 +3,23 @@
 {% block title %}Suites{% endblock %}
 
 {% block body %}
-    <h1>Suites</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ suite.id }}</td>
-            </tr>
-            <tr>
-                <th>Titre</th>
-                <td>{{ suite.titre }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ suite.description }}</td>
-            </tr>
-            <tr>
-                <th>Prix</th>
-                <td>{{ suite.prix }}</td>
-            </tr>
-            <tr>
-                <th>Lien</th>
+{{dump(suite.reservation)}}
+    <div class="suite">
+    <h1>{{ suite.titre }}</h1>
+                <div class="suiteContent">
+
+          
+                   {% for i in suite.images %}
+                    <img src="{{ asset('/uploads/'~i.titre) }}" alt="" width='100%'>
+                     {% endfor %}
+                <p>{{ suite.description }}</p>
                 <td>{{ suite.lien }}</td>
-            </tr>
-        </tbody>
-    </table>
+                     </div>
 
     <a href="{{ path('app_suites_index') }}">back to list</a>
+    <a href="{{ path('app_reservation_index') }}">Reserver</a>
 
-    <a href="{{ path('app_suites_edit', {'id': suite.id}) }}">edit</a>
 
-    {{ include('suites/_delete_form.html.twig') }}
+
 {% endblock %}

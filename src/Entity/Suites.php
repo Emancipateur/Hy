@@ -33,9 +33,13 @@ class Suites
     #[ORM\OneToMany(mappedBy: 'suite', targetEntity: Images::class, cascade: ['persist'])]
     private $images;
 
+    #[ORM\OneToMany(mappedBy: 'suites', targetEntity: Reservation::class)]
+    private $reservation;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
+        $this->reservation = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -131,5 +135,41 @@ class Suites
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Reservation>
+     */
+    public function getReservation(): Collection
+    {
+        return $this->reservation;
+    }
+
+    public function addReservation(Reservation $reservation): self
+    {
+        if (!$this->reservation->contains($reservation)) {
+            $this->reservation[] = $reservation;
+            $reservation->setSuites($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(Reservation $reservation): self
+    {
+        if ($this->reservation->removeElement($reservation)) {
+            // set the owning side to null (unless already changed)
+            if ($reservation->getSuites() === $this) {
+                $reservation->setSuites(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString(){
+
+        return $this->getTitre();
+
     }
 }
