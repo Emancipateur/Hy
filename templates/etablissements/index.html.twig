@@ -3,39 +3,26 @@
 {% block title %}Etablissements index{% endblock %}
 
 {% block body %}
-    <h1>Etablissements index</h1>
-{{dump(etablissements)}}
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Ville</th>
-                <th>Adresse</th>
-                <th>Description</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for etablissement in etablissements %}
-            <tr>
-                <td>{{ etablissement.id }}</td>
-                <td>{{ etablissement.nom }}</td>
-                <td>{{ etablissement.ville }}</td>
-                <td>{{ etablissement.adresse }}</td>
-                <td>{{ etablissement.description }}</td>
-                <td>
-                    <a href="{{ path('app_etablissements_show', {'id': etablissement.id}) }}">Voir</a>
-                    <a href="{{ path('app_etablissements_edit', {'id': etablissement.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <h1>Etablissements index2</h1>
+    <div class="etablissement">
 
-    <a href="{{ path('app_etablissements_new') }}">Create new</a>
+        {% for etablissement in etablissements %}
+ <div class="etablissementContent">
+                <div class="etablissementTop">
+                <h2>{{ etablissement.nom }}</h2>
+                <div class="etablisementNomAdresseVille">
+                <p>{{ etablissement.ville }}</p>
+                <p>{{ etablissement.adresse }}</p>
+                </div>
+                </div>
+                <p>{{ etablissement.description }}</p>
+                
+                    <a href="{{ path('app_etablissements_show', {'id': etablissement.id}) }}">Voir</a>
+             
+              
+   
+</div>
+{% endfor %}
+</div>
+   
 {% endblock %}

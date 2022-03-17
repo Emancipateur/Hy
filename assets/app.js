@@ -10,3 +10,19 @@ import './styles/app.scss';
 
 // start the Stimulus application
 import './bootstrap';
+
+
+import React, {useState, useEffect} from 'react';
+ import ReactDOM from 'react-dom';
+ import Items from './Items';
+ 
+ export const App = () => {
+   
+
+   
+   return (
+     <Items  />
+   )
+ }
+ 
+ ReactDOM.render(<App />, document.getElementById('root'));
