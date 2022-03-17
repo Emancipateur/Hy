@@ -2,8 +2,13 @@
 
     background-color: blue;
     .etablissementContent{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        // align-items: center;
         padding: 2rem;
-        background-color: red;
+        background-color: #333;
+        color: #fff;
         margin-bottom: 1rem;
 
 
@@ -16,7 +21,11 @@
 
     }
 
-
+    .lienEtablissement{
+      margin: 2rem;
+      text-align: center;
+      font-size: 1.2rem;
+    }
 
 
 }

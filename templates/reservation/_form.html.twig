@@ -1,7 +1,7 @@
 
-<div class="suite-js" data-is-suite="{{ suite.id }}">
+<div class="suite-js" data-is-suite="{{ suite.id }}"></div>
 {% if app.user %}
-<div class="client-js" data-is-client="{{ app.user.id }}">
+<div class="client-js" data-is-client="{{ app.user.id }}"></div>
 {% endif %}
  
 </div>
@@ -16,7 +16,7 @@
             {{ form_widget(form.suites, {'value' : suite.id}) }}
         </div>
 
-  <div id="root"></div>
 
     </div>
 {{ form_end(form) }}
+  <div id="root"></div>

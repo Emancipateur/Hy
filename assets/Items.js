@@ -2,6 +2,7 @@ import React ,{ useState, useEffect, useCallback} from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { differenceInCalendarDays } from 'date-fns';
+import './styles/calendar.scss'
 
 
 function Item() {
@@ -38,7 +39,7 @@ const [booked,setBooked] = useState([]);
   }, []);
 
 
-// Tri les réservations par rapport a la Suite id
+// Tri les réservations par rapport a la suite
 useEffect(()=> {
  const book = booked.filter(book => book.suites.includes(suite))
   setDebut(book.map(b => b.debut))

@@ -19,6 +19,9 @@ class Images
     #[ORM\Column(type: 'string', length: 255)]
     private $titre;
 
+    #[ORM\ManyToOne(targetEntity: Etablissements::class, inversedBy: 'image')]
+    private $etablissements;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -51,5 +54,17 @@ class Images
     public function __toString()
     {
         return $this->titre;
+    }
+
+    public function getEtablissements(): ?Etablissements
+    {
+        return $this->etablissements;
+    }
+
+    public function setEtablissements(?Etablissements $etablissements): self
+    {
+        $this->etablissements = $etablissements;
+
+        return $this;
     }
 }

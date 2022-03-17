@@ -10,14 +10,21 @@
  <div class="etablissementContent">
                 <div class="etablissementTop">
                 <h2>{{ etablissement.nom }}</h2>
+
+
                 <div class="etablisementNomAdresseVille">
                 <p>{{ etablissement.ville }}</p>
                 <p>{{ etablissement.adresse }}</p>
                 </div>
+
                 </div>
+                                   {% for i in etablissement.image %}
+                      <img src="{{ asset('/uploads/'~i.titre) }}" alt="" width="100%">
+                   {% endfor %}
                 <p>{{ etablissement.description }}</p>
-                
-                    <a href="{{ path('app_etablissements_show', {'id': etablissement.id}) }}">Voir</a>
+                <div class="lienEtablissement">
+                    <a  href="{{ path('app_etablissements_show', {'id': etablissement.id}) }}">Voir l'établissement & ses suites</a>
+                    </div>
              
               
    

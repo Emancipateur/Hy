@@ -14,7 +14,7 @@
                     <img src="{{ asset('/uploads/'~i.titre) }}" alt="" width='100%'>
                      {% endfor %}
                 <p>{{ suite.description }}</p>
-                <td>{{ suite.lien }}</td>
+                <a href="{{suite.lien}}">{{suite.lien}}</a>
                      </div>
 
     <a href="{{ path('app_suites_index') }}">back to list</a>

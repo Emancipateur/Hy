@@ -33,9 +33,13 @@ class Etablissements
     #[ORM\OneToMany(mappedBy: 'etablissements', targetEntity: Suites::class)]
     private $suite;
 
+    #[ORM\OneToMany(mappedBy: 'etablissements', targetEntity: Images::class, cascade: ['persist', 'remove'])]
+    private $image;
+
     public function __construct()
     {
         $this->suite = new ArrayCollection();
+        $this->image = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -136,5 +140,35 @@ class Etablissements
     public function __toString()
     {
         return $this->getNom();
+    }
+
+    /**
+     * @return Collection<int, Images>
+     */
+    public function getImage(): Collection
+    {
+        return $this->image;
+    }
+
+    public function addImage(Images $image): self
+    {
+        if (!$this->image->contains($image)) {
+            $this->image[] = $image;
+            $image->setEtablissements($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Images $image): self
+    {
+        if ($this->image->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getEtablissements() === $this) {
+                $image->setEtablissements(null);
+            }
+        }
+
+        return $this;
     }
 }

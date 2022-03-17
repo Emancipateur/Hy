@@ -2,13 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\Images;
 use App\Entity\Etablissements;
 use App\Form\EtablissementsType;
+use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\EtablissementsRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/etablissements')]
 class EtablissementsController extends AbstractController
@@ -32,13 +34,29 @@ class EtablissementsController extends AbstractController
     }
 
     #[Route('/new', name: 'app_etablissements_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EtablissementsRepository $etablissementsRepository): Response
+    public function new(Request $request, EtablissementsRepository $etablissementsRepository, EntityManagerInterface $entityManager): Response
     {
         $etablissement = new Etablissements();
         $form = $this->createForm(EtablissementsType::class, $etablissement);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $images = $form->get('images')->getData();
+            foreach($images as $image){
+                $fichier = md5(uniqid()).'.'.$image->guessExtension();
+                $image->move(
+                    $this->getParameter('images_directory'),
+                    $fichier
+                );
+                
+                // On crée l'image dans la base de données
+                $img = new Images();
+                $img->setTitre($fichier);
+                $etablissement->addImage($img);
+            }
+            
+            $entityManager->persist($etablissement);
+            $entityManager->flush();
             $etablissementsRepository->add($etablissement);
             return $this->redirectToRoute('app_etablissements_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -58,12 +76,29 @@ class EtablissementsController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_etablissements_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Etablissements $etablissement, EtablissementsRepository $etablissementsRepository): Response
+    public function edit(Request $request, Etablissements $etablissement, EtablissementsRepository $etablissementsRepository, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(EtablissementsType::class, $etablissement);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $images = $form->get('images')->getData();
+            foreach($images as $image){
+                $fichier = md5(uniqid()).'.'.$image->guessExtension();
+                $image->move(
+                    $this->getParameter('images_directory'),
+                    $fichier
+                );
+                
+                // On crée l'image dans la base de données
+                $img = new Images();
+                $img->setTitre($fichier);
+                $etablissement->addImage($img);
+            }
+            
+            $entityManager->persist($etablissement);
+            $entityManager->flush();
+            $etablissementsRepository->add($etablissement);
             $etablissementsRepository->add($etablissement);
             return $this->redirectToRoute('app_etablissements_index', [], Response::HTTP_SEE_OTHER);
         }
