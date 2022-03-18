@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+
+$black : #333;
+$white : #FFF;
+$purplegradient : linear-gradient(90deg, #5D54A4, #7C78B8);		
+
 // body::before {
 //     content: "";
 //     position: absolute;
@@ -14,18 +19,30 @@
 //     opacity: .4; 
 //     z-index: -1;
 //     background: url('../../public/uploads/bg.jpg');
-//   }
 
+
+body {
+  
+	background: linear-gradient(90deg, #C7C5F4, #776BCC);		
+  overflow: overlay;
+
+
+}
 body::before {
     content: "";
     position: absolute;
     top: 0; 
     left: 0;
     width: 100%; 
-    height: 100%;  
+    position:fixed;
+    top:0px;
+    bottom:0px;
+    width:100%; //Do not forget width
+    overflow-y:auto;
+
     opacity: .4; 
     z-index: -1;
-    background-color: blue;
+    background-color: rgb(108, 11, 173);
   }
 
   a{
@@ -35,13 +52,22 @@ body::before {
         color: white;
       }
   }
+  a {
+    text-decoration: none;
+   }
+   li {
+    list-style: none;
+   }
 
-  #root{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
+   .lien{
 
-  .react-calendar{
-    width: 500px;
-  }
+    margin: 2rem;
+    text-align: center;
+    font-size: 1.2rem;
+    border: 1px solid #FFF;
+    padding: 0.7rem;
+    border-radius: 8px;
+}
+
+
+  

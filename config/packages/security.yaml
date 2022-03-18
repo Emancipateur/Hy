@@ -21,6 +21,19 @@ security:
             entity:
                 class: App\Entity\Clients
                 property: email
+        app_admin_provider:
+            entity:
+                class: App\Entity\Admin
+                property: email
+        app_gerants_provider:
+            entity:
+                class: App\Entity\Gerants
+                property: email
+
+
+        all_users:
+            chain:
+                providers: ['app_user_provider', 'app_gerants_provider', 'app_admin_provider']
         # used to reload user from session & other features (e.g. switch_user)
         # used to reload user from session & other features (e.g. switch_user)
     firewalls:
@@ -29,12 +42,14 @@ security:
             security: false
         main:
             lazy: true
-            provider: app_user_provider
+            provider: all_users
 
             form_login:
                 # "login" is the name of the route created previously
                 login_path: login
                 use_referer: true
+                default_target_path: login_success
+                always_use_default_target_path: true
                 check_path: login    
                 enable_csrf: true       
 

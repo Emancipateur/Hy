@@ -1,5 +1,8 @@
 
+
+ 	{% if app.request.attributes.get('_route') == 'app_reservation_new' %}
 <div class="suite-js" data-is-suite="{{ suite.id }}"></div>
+{% endif %}
 {% if app.user %}
 <div class="client-js" data-is-client="{{ app.user.id }}"></div>
 {% endif %}
@@ -13,7 +16,9 @@
 
     <div class="row">
         <div class="col">
+         	{% if app.request.attributes.get('_route') == 'app_reservation_new' %}
             {{ form_widget(form.suites, {'value' : suite.id}) }}
+            {% endif %}
         </div>
 
 

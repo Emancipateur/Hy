@@ -6,6 +6,7 @@
 {% block body %}
 	<div class="gerantEtablissement">
 		<h1>{{ etablissement.nom }}</h1>
+
 		<img src="{{ asset('/uploads/'~etablissement.image[0].titre) }}" alt="" width="100%">
 
 
@@ -22,7 +23,7 @@
 
 
 	<div class="gerantContent">
-		<h1>Nos suites</h1>
+		<h2>Nos suites</h2>
 
 
 		{% for suite in etablissement.suite %}
@@ -31,9 +32,7 @@
 				<p>{{ suite.description }}</p>
 				<div
 					class="gerantImageSuite">
-					{# {% for i in suite.images %}
-					                    <img src="{{ asset('/uploads/'~i.titre) }}" alt="" width="100%">
-					                     {% endfor %} #}
+			
 					<img src="{{ asset('/uploads/'~suite.images[0].titre) }}" alt="" width="100%">
 				</div>
 				<div class="tarif">
@@ -42,9 +41,9 @@
 						€ / Nuit
 					</p>
 				</div>
-
+<div class="lienEtablissement">
 				<a href="{{ path('app_suites_show', {'id': suite.id}) }}">Voir la suite</a>
-
+</div>
 			</div>
 
 		{% endfor %}

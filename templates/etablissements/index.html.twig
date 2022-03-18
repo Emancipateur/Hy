@@ -1,14 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Etablissements index{% endblock %}
+{% block title %}Hypnos{% endblock %}
 
 {% block body %}
-    <h1>Etablissements index2</h1>
+    {# <h1>Etablissements Hypnos</h1> #}
+    {# <img src="{{ asset('/logo.png') }}" alt="" width="50%"> #}
     <div class="etablissement">
 
         {% for etablissement in etablissements %}
  <div class="etablissementContent">
                 <div class="etablissementTop">
+                
                 <h2>{{ etablissement.nom }}</h2>
 
 
@@ -21,10 +23,10 @@
                                    {% for i in etablissement.image %}
                       <img src="{{ asset('/uploads/'~i.titre) }}" alt="" width="100%">
                    {% endfor %}
-                <p>{{ etablissement.description }}</p>
+                <p class="etablissementDescription">{{ etablissement.description }}</p>
                 <div class="lienEtablissement">
                     <a  href="{{ path('app_etablissements_show', {'id': etablissement.id}) }}">Voir l'établissement & ses suites</a>
-                    </div>
+                 </div>
              
               
    

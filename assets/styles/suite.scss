@@ -3,17 +3,69 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #333;
-    color: white;
+    background-color: $white;
+    color:$white;
 
 
+
+
+h1{
+    background: $black;
+	font-size: 24px;
+	padding: 16px 20px;
+	border: 1px solid #5C5696;
+    text-align: center;
+	width: 100%;
+	color: $white;
+	box-shadow: 0px 2px 2px #5C5696;
+	
+}
+ 
+.lienBooking{
+    text-align: center;
+    padding: 1rem;
+
+    background-color: $black;
+    &:hover{
+        background: purple;
+     }
+    
+}
 
     .suiteContent{
-        background-color: #333;
-        color: white;
+      
+        background-color: $black;
+        color: $white;
         display: flex;
         flex-direction: column;
         justify-content: 'center';
         align-items: 'center';
+        
+        .suiteDescription{
+            
+            background: $purplegradient;
+            padding: 1rem;
+        }
+
+        img{
+            padding: 1rem;
+        }
     }
+}
+
+
+//creation new suite
+
+ #suites{
+    textarea{
+        width: 100vw;
+        height: 300px;
+    }
+ }
+@media (min-width: 1250px) {
+.imagesSuite{
+  margin: auto;
+    width: 70%;
+}
+
 }

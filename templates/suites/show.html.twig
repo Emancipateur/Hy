@@ -4,21 +4,30 @@
 
 {% block body %}
 
-{{dump(suite.reservation)}}
+
     <div class="suite">
     <h1>{{ suite.titre }}</h1>
                 <div class="suiteContent">
 
           
                    {% for i in suite.images %}
+                   <div class='imagesSuite'>
                     <img src="{{ asset('/uploads/'~i.titre) }}" alt="" width='100%'>
+                    </div>
                      {% endfor %}
+                     <div class="suiteDescription">
                 <p>{{ suite.description }}</p>
-                <a href="{{suite.lien}}">{{suite.lien}}</a>
-                     </div>
-
-    <a href="{{ path('app_suites_index') }}">back to list</a>
+               
+               
+    <div class="lien">
     <a href="{{ path('app_reservation_new', {'id': suite.id}) }}">Reserver</a>
+    </div>
+                     <div class="lienBooking">
+                <a   href="{{suite.lien}}"> {{suite.lien}}</a>
+                     </div>
+       </div>
+       </div>
+       </div>
 
 
 

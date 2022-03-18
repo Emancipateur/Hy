@@ -28,7 +28,7 @@ class EtablissementsController extends AbstractController
     {
 
        $etablissement = $etablissementsRepository->findByGerant($this->getUser()->getId());
-        return $this->render('etablissements/etablissement.html.twig', [
+        return $this->render('etablissements/etablissement_gerant.html.twig', [
             'etablissement' => $etablissement,
         ]);
     }
@@ -66,6 +66,25 @@ class EtablissementsController extends AbstractController
             'form' => $form,
         ]);
     }
+    #[Route('/supprime/imageEta/{id}', name: 'etablissement_delete_image', methods: ['POST','GET'])]
+public function deleteImage(Images $image, Request $request, EntityManagerInterface $entityManager){
+
+
+  
+        $nom = $image->getTitre();
+        // On supprime le fichier
+   
+        unlink($this->getParameter('./uploads').'/'.$nom);
+
+        // On supprime l'entrée de la base
+        $entityManager->remove($image);
+        $entityManager->flush();
+
+        return $this->redirect($request->headers->get('referer'));
+      
+        
+    
+}
 
     #[Route('/{id}', name: 'app_etablissements_show', methods: ['GET'])]
     public function show(Etablissements $etablissement): Response

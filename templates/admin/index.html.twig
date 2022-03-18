@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello Admin{% endblock %}
+
+{% block body %}
+  <div class="lienFlex">
+<div class="lien">
+  <a href="{{ path('app_suites_new') }}">Créer une nouvelle Suite</a>
+  </div>
+<div class="lien">
+  <a href="{{ path('app_suites_index') }}">Voir les Suites</a>
+  </div>
+  <div class="lien">
+   <a href="{{ path('app_etablissements_new')}}">Créer un nouvel Établissement</a>
+   </div>
+  <div class="lien">
+   <a href="{{ path('app_etablissements_a')}}">Voir les Établissements</a>
+   </div>
+  <div class="lien">
+   <a href="{{ path('app_gerants_new')}}">Créer un nouveau Gérant</a>
+   </div>
+  <div class="lien">
+   <a href="{{ path('app_gerants_index')}}">Voir les Gérants</a>
+   </div>
+  <div class="lien">
+   <a href="{{ path('app_clients_index')}}">Voir les Clients</a>
+   </div>
+  
+  <div class="lien">
+   <a href="{{ path('app_reservation_index')}}">Voir les réservations</a>
+   </div>
+   </div>
+{% endblock %}

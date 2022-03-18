@@ -5,7 +5,21 @@
 {% block body %}
   {% for etablissement in etablissement %}
   <div class="gerantEtablissement">
+
+  <div class="lienFlex">
+<div class="lienEtablissement">
+  <a href="{{ path('app_suites_new') }}">Créer une nouvelle suite</a>
+  </div>
+  <div class="lienEtablissement">
+   <a href="{{ path('app_etablissements_edit', {'id': etablissement.id}) }}">Modifier Établissement</a>
+   </div>
+   </div>
+  
+<div class="lienEtablissement">
     <h1>{{ etablissement.nom }}</h1>
+                        {% for i in etablissement.image %}
+                      <img src="{{ asset('/uploads/'~i.titre) }}" alt="" width="50%">
+                   {% endfor %}
 
       
               
@@ -14,6 +28,7 @@
                 <p>{{ etablissement.ville }} - {{ etablissement.adresse }}</p>
            
                 <p>{{ etablissement.description }}</p>
+        </div>
         </div>
          
           </div>
@@ -45,7 +60,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_suites_new') }}">Create new</a>
+
 
    </div>
 {% endblock %}

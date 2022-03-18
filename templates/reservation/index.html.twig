@@ -5,22 +5,29 @@
 {% block body %}
     <h1>Reservation index</h1>
     
-{{dump(reservations)}}
+
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Debut</th>
                 <th>Fin</th>
+                <th>Client</th>
+                <th>Suite</th>
+                <th>Eetablissement</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for reservation in reservations %}
+  
             <tr>
                 <td>{{ reservation.id }}</td>
                 <td>{{ reservation.debut ? reservation.debut|date('Y-m-d') : '' }}</td>
                 <td>{{ reservation.fin ? reservation.fin|date('Y-m-d') : '' }}</td>
+                <td>{{ reservation.clients }}</td>
+                <td>{{ reservation.suites }}</td>
+                <td>{{ reservation.suites.etablissements.nom}}</td>
                 <td>
                     <a href="{{ path('app_reservation_show', {'id': reservation.id}) }}">show</a>
                     <a href="{{ path('app_reservation_edit', {'id': reservation.id}) }}">edit</a>

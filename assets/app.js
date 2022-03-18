@@ -1,3 +1,4 @@
+
 /*
  * Welcome to your app's main JavaScript file!
  *
@@ -9,10 +10,10 @@
 import './styles/app.scss';
 
 // start the Stimulus application
-import './bootstrap';
+// import './bootstrap';
 
 
-import React, {useState, useEffect} from 'react';
+import React from 'react';
  import ReactDOM from 'react-dom';
  import Items from './Items';
  

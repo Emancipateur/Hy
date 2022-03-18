@@ -1,7 +1,7 @@
 import React ,{ useState, useEffect, useCallback} from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import { differenceInCalendarDays } from 'date-fns';
+import { differenceInCalendarDays, differenceInDays} from "date-fns";
 import './styles/calendar.scss'
 
 
@@ -130,7 +130,10 @@ const a = (e) => {
   }
 
   return (
-    <form>
+    <>
+    <div className="calendarContent">
+    <h1>Faire une Reservation</h1>
+    <form className='calendarForm'>
     <Calendar
     onChange={(e) => a(e)}
     value={date}
@@ -138,10 +141,17 @@ const a = (e) => {
     selectRange={true}
     />
     { client !== '' ? (
-  <button onClick={sendData}>Reserver</button>
-    ) : <button onClick={(e) => login(e)}>Se connecter</button>
+  <button className='reservationButton' onClick={sendData}>Reserver</button>
+    ) : <button className='reservationButton' onClick={(e) => login(e)}>Se connecter</button>
 }
     </form>
+    <div className='reservationNewDetails'>
+      <p>Reservation du {d.toLocaleDateString()} au {f.toLocaleDateString()} </p>
+      <p>Soit un Total de {differenceInDays(f,d)} Nuit(s)</p>
+    
+    </div>
+    </div>
+    </>
     );
 
 

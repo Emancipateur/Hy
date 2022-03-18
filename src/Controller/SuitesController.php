@@ -66,7 +66,7 @@ public function deleteImage(Images $image, Request $request, EntityManagerInterf
   
         $nom = $image->getTitre();
         // On supprime le fichier
-        unlink($this->getParameter('images_directory').'/'.$nom);
+        unlink($this->getParameter('./uploads').'/'.$nom);
 
         // On supprime l'entrée de la base
         $entityManager->remove($image);

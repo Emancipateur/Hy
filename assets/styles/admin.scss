@@ -1,0 +1,38 @@
+.lienFlex{
+display: flex;
+flex-direction: column;
+
+    .lien{
+
+        margin: 2rem;
+        text-align: center;
+        font-size: 1.2rem;
+        border: 1px solid #FFF;
+        padding: 0.7rem;
+        border-radius: 8px;
+    }
+}
+
+.imageSuiteAdmin{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+td{
+    padding : 2rem;
+    border: 1px solid black;
+}
+
+table{
+    // border: 1px solid black;
+}
+
+
+
+@media (max-width: 800px) {
+    .suiteDescriptionAdmin{
+      display: none;
+    }
+    
+    }

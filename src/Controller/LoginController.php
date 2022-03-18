@@ -25,6 +25,28 @@ class LoginController extends AbstractController
     }
 }
 
+    /**
+     * @Route("/login_success", name="login_success")
+     */
+    public function postLoginRedirectAction()
+    {
+        if($this->getUser()->getRoles()[0] == 'ROLE_USER' ){
+
+            return $this->redirectToRoute("app_etablissements_index");
+        } else if ($this->getUser()->getRoles()[0] == 'ROLE_GERANT' ) {
+
+         return $this->redirectToRoute("app_etablissements_a");
+
+        } else if ($this->getUser()->getRoles()[0] == 'ROLE_ADMIN' ) {
+
+         return $this->redirectToRoute("app_etablissements_a");
+
+        } else {
+            return $this->redirectToRoute("app_etablissements_index");
+        }
+    }
+
+
 
     /**
      * @Route("/logout", name="app_logout", methods={"GET"})
