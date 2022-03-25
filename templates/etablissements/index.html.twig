@@ -21,7 +21,7 @@
 
                 </div>
                                    {% for i in etablissement.image %}
-                      <img src="{{ asset('/uploads/'~i.titre) }}" alt="" width="100%">
+                      <img src="{{ asset('./uploads/'~i.titre) }}" alt="" width="100%">
                    {% endfor %}
                 <p class="etablissementDescription">{{ etablissement.description }}</p>
                 <div class="lienEtablissement">

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 	<head>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>
 			{% block title %}Welcome!
 			{% endblock %}
@@ -18,22 +19,18 @@
 		{% endblock %}
         	<header>
 			 {# <a class="navbar-brand" href="#"><img src="{{ asset('logo.png') }}" alt="Symfony!"/></a> #}
-<!DOCTYPE html>
-<html lang="en">
- <head>
- <meta charset="UTF-8" />
- <meta http-equiv="X-UA-Compatible" content="IE=edge" />
- <meta name="viewport" content="width=device-width, initial-scale=1.0" />
- <link rel="stylesheet" href="style.css" />
- <title>Document</title>
+
+
  </head>
  <body>
+
+
  <nav class="navbar">
  <!-- LOGO -->
- <div class="logo"> <img src="{{ asset('/h.png') }}" alt="" width="10%">
+ <div class="logo"> <img src="{{ asset('./h.png') }}" alt="" width="10%">
  <span>ypnos</span>
 
- 
+
  </div>
  <!-- NAVIGATION MENU -->
  <ul class="nav-links">
@@ -43,7 +40,21 @@
  <!-- NAVIGATION MENUS -->
  <div class="menu">
  <li>    <a href="{{ path('app_etablissements_index') }}">Home</a></li>
+  {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+{% if (app.user.roles[0] == 'ROLE_ADMIN') %}
  <li><a href="{{ path('app_admin') }}">Admin</a></li>
+  {% endif %}
+ {% endif %}
+ {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+{% if (app.user.roles[0] == 'ROLE_GERANT') %}
+ <li><a href="{{ path('app_etablissements_a') }}">Gérant</a></li>
+  {% endif %}
+ {% endif %}
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+{% if (app.user.roles[0] == 'ROLE_CLIENT') %}
+ <li><a href="{{ path('app_clients_show', {'id' : app.user.id }) }}">Client</a></li>
+ {% endif %}
+ {% endif %}
  <li class="services">
      <a href="#">Etablissements</a>
  <!-- DROPDOWN MENU -->
@@ -51,20 +62,19 @@
  <li><a href="{{ path('app_etablissements_show', {'id': 1}) }}">L'exquis</a></li>
  <li><a href="{{ path('app_etablissements_show', {'id': 2}) }}">L'irrépressible</a></li>
  <li><a href="{{ path('app_etablissements_show', {'id': 3}) }}">L'orgasmique</a></li>
- <li><a href="{{ path('app_etablissements_show', {'id': 4}) }}">L'hibernation</a></li>
- <li><a href="{{ path('app_etablissements_show', {'id': 5}) }}">L'exquis</a></li>
- <li><a href="{{ path('app_etablissements_show', {'id': 6}) }}">L'exquis</a></li>
- <li><a href="{{ path('app_etablissements_show', {'id': 7}) }}">L'exquis</a></li>
+ <li><a href="{{ path('app_etablissements_show', {'id': 5}) }}">L'hibernation</a></li>
+ <li><a href="{{ path('app_etablissements_show', {'id': 6}) }}">L'authentique</a></li>
+ <li><a href="{{ path('app_etablissements_show', {'id': 7}) }}">L'irrésistible</a></li>
+ <li><a href="{{ path('app_etablissements_show', {'id': 8}) }}">L'incroyable</a></li>
  </ul>
  </li>
- <li><a href="/">Contact</a></li>
+ <li><a href="{{ path('contact') }}">Contact</a></li>
  {% if is_granted('IS_AUTHENTICATED_FULLY') %}
- <li><a href="/logout">Deconnexion</a></li>
+ <li><a href="{{ path('app_logout') }}">Deconnexion</a></li>
  {% else %}
 	 
 
- <li><a href="/login">Connexion</a></li>
-{% endif %}
+ <li><a href="{{ path('login') }}">Connexion</a></li>{% endif %}
  </div>
  </ul>
  </nav>
@@ -80,10 +90,17 @@
 		</nav> #}
 	</header>
 	</head>
-    
+    	  {% for message in app.flashes('warning') %}
+    <div class="flash-notice" style="background:#ffa751;height:3rem;font-size:1rem;text-align:center">
+        {{ message }}
+    </div>
+{% endfor %}
 
 	<body>
-		{% block body %}{% endblock %}
+		{% block body %}
+	
+		
+		{% endblock %}
 
 	</body>
 </html>

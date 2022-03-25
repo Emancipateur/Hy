@@ -16,9 +16,10 @@
    </div>
   
 <div class="lienEtablissement">
-    <h1>{{ etablissement.nom }}</h1>
+
+    <h1>Votre Établissement : {{ etablissement.nom }}</h1>
                         {% for i in etablissement.image %}
-                      <img src="{{ asset('/uploads/'~i.titre) }}" alt="" width="50%">
+                      <img src="{{ asset('./uploads/'~i.titre) }}" alt="" width="50%">
                    {% endfor %}
 
       
@@ -48,7 +49,7 @@
                 <p>Tarif : {{ suite.prix }} € -     <a href="{{suite.lien}}">{{suite.lien}}</a></p>
                 <div class="gerantImageSuite">
                    {% for i in suite.images %}
-                    <img src="{{ asset('/uploads/'~i.titre) }}" alt="" width="400">
+                    <img src="{{ asset('./uploads/'~i.titre) }}" alt="" width="400">
                      {% endfor %}
                      </div>
            

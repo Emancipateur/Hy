@@ -54,8 +54,6 @@ class EtablissementsRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('e')
             ->andWhere('e.gerant = :val')
             ->setParameter('val', $value)
-            ->orderBy('e.id', 'ASC')
-            ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;

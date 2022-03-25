@@ -11,6 +11,7 @@ function Item() {
  const [debut, setDebut] = useState([]);
  const [fin, setFin] = useState([]);
 const [booked,setBooked] = useState([]);
+const [suitePrix, setSuitePrix] = useState(0)
 
 //Recupère Client Id from symfony
   document.addEventListener('DOMContentLoaded', function() {
@@ -18,6 +19,12 @@ const [booked,setBooked] = useState([]);
     var clientId = jsClient.dataset.isClient;
 
   setClient(clientId)
+  });
+  document.addEventListener('DOMContentLoaded', function() {
+    var jsSuitePrix = document.querySelector('.prix-js');
+    var suitePrix = jsSuitePrix.dataset.isPrix;
+
+  setSuitePrix(suitePrix)
   });
 
 //Recupère Suite Id from symfony
@@ -30,6 +37,8 @@ const [booked,setBooked] = useState([]);
   
   useEffect(() => {
     fetch("https://localhost:8000/api/reservations", {
+      method : 'GET',
+      mode : 'cors',
     headers: {
       'Accept': 'application/ld+json'
     }})
@@ -37,7 +46,6 @@ const [booked,setBooked] = useState([]);
       .then((data) => setBooked(data["hydra:member"]));
     
   }, []);
-
 
 // Tri les réservations par rapport a la suite
 useEffect(()=> {
@@ -68,7 +76,7 @@ function isSameDay(a, b) {
   var dateArray = new Array();
 function getDates(startDate, stopDate) {
 
-  var currentDate = startDate;
+  var currentDate = startDate.addDays(1);
   while (currentDate <= stopDate) {
       dateArray.push(new Date (currentDate));
       currentDate = currentDate.addDays(1);
@@ -90,6 +98,7 @@ const tileDisabled = ({ date, view }) => {
   if (view === 'month') {
     // Check if a date React-Calendar wants to check is within any of the ranges
     return dateArray.find(dDate => isSameDay(dDate, date));
+  
 
 }}
 
@@ -107,7 +116,8 @@ const a = (e) => {
 // e.preventDefault();
 
 
-  fetch('https://localhost:8000/api/reservations', {
+  // fetch('https://emancipateur.com/hypnos/public/api/reservations', {
+  fetch('https://127.0.0.1:8000/api/reservations', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -115,18 +125,19 @@ const a = (e) => {
       },
       body: JSON.stringify({debut: d, fin: f, clients: '/api/clients/'+client, suites : "/api/suites/"+ suite})
       
-    });
-  
-
+    }).then(res => window.location.href='http://127.0.0.1:8000/reservation/sucess')
    }
 
   const [date, setDate] = useState(new Date());
   const [d, setD] = useState(new Date());
   const [f, setF] = useState(new Date());
-  const route = "{{ path('blog_show', {slug: 'my-blog-post'})|escape('js') }}"
+
+
+  
   const login = (e) => {
     e.preventDefault()
-    window.location.href='http://127.0.0.1:8000/login';
+    // window.location.href='https://emancipateur.com/hypnos/public/login';
+    window.location.href='https://127.0.0.1:8000/login';
   }
 
   return (
@@ -137,17 +148,19 @@ const a = (e) => {
     <Calendar
     onChange={(e) => a(e)}
     value={date}
+    minDate={new Date()}
     tileDisabled={tileDisabled}
     selectRange={true}
     />
     { client !== '' ? (
   <button className='reservationButton' onClick={sendData}>Reserver</button>
-    ) : <button className='reservationButton' onClick={(e) => login(e)}>Se connecter</button>
+    ) : <button className='reservationButton' onClick={(e) => login(e)}>Reserver ( Connexion )</button>
 }
     </form>
     <div className='reservationNewDetails'>
       <p>Reservation du {d.toLocaleDateString()} au {f.toLocaleDateString()} </p>
       <p>Soit un Total de {differenceInDays(f,d)} Nuit(s)</p>
+      <p>Total : {differenceInDays(f,d) * suitePrix}  </p>
     
     </div>
     </div>

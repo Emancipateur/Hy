@@ -5,10 +5,11 @@ namespace App\Controller;
 use App\Entity\Clients;
 use App\Form\ClientsType;
 use App\Repository\ClientsRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 #[Route('/clients')]
 class ClientsController extends AbstractController
@@ -22,15 +23,22 @@ class ClientsController extends AbstractController
     }
 
     #[Route('/new', name: 'app_clients_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ClientsRepository $clientsRepository): Response
+    public function new(Request $request, ClientsRepository $clientsRepository,UserPasswordHasherInterface $passwordHasher): Response
     {
         $client = new Clients();
         $form = $this->createForm(ClientsType::class, $client);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+                    // Me permet de hasher le password avant le persister  grâce au UserPasswordHasherInterface
+                    $hashedPassword = $passwordHasher->hashPassword(
+                        $client,
+                        $client->getPassword()
+                    );
+                    $client->setPassword($hashedPassword);
+        
             $clientsRepository->add($client);
-            return $this->redirectToRoute('app_clients_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_etablissements_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('clients/new.html.twig', [

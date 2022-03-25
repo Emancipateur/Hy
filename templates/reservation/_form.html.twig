@@ -2,12 +2,13 @@
 
  	{% if app.request.attributes.get('_route') == 'app_reservation_new' %}
 <div class="suite-js" data-is-suite="{{ suite.id }}"></div>
+<div class="prix-js" data-is-prix="{{ suite.prix }}"></div>
 {% endif %}
 {% if app.user %}
 <div class="client-js" data-is-client="{{ app.user.id }}"></div>
 {% endif %}
  
-</div>
+</div class='reservationPage'>
 {{ form_start(form) }}
     <div class="my-custom-class-for-errors">
         {{ form_errors(form) }}
@@ -23,5 +24,5 @@
 
 
     </div>
-{{ form_end(form) }}
   <div id="root"></div>
+{{ form_end(form) }}

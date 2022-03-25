@@ -28,8 +28,8 @@
                 <td>{{ suite.prix }}</td>
                 <td>{{ suite.lien }}</td>
                 <td>
-                    <a href="{{ path('app_suites_show', {'id': suite.id}) }}">show</a>
-                    <a href="{{ path('app_suites_edit', {'id': suite.id}) }}">edit</a>
+                    <a href="{{ path('app_suites_show', {'id': suite.id}) }}">Voir</a>
+                    <a href="{{ path('app_suites_edit', {'id': suite.id}) }}">Modifier</a>
                 </td>
             </tr>
 
@@ -40,7 +40,7 @@
         </table>
     <div class="imageSuiteAdmin">
                        {% for i in suite.images %}             
-<img src="{{ asset('/uploads/'~i.titre) }}" alt="" width="150">
+<img src="{{ asset('./uploads/'~i.titre) }}" alt="" width="150">
     {% endfor %}
     </div>
         {% endfor %}

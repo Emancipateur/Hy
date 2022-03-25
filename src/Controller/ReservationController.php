@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+
 use App\Entity\Suites;
 use App\Entity\Reservation;
 use App\Form\ReservationType;
+use App\Repository\ClientsRepository;
 use App\Repository\SuitesRepository;
 use App\Repository\ReservationRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,14 +25,16 @@ class ReservationController extends AbstractController
             'reservations' => $reservationRepository->findAll(),
         ]);
     }
-    #[Route('/a', name: 'app_reservation_a', methods: ['GET'])]
-    public function a(ReservationRepository $reservationRepository): Response
+    #[Route('/sucess', name: 'app_reservation_sucess', methods: ['GET'])]
+    public function sucess(ReservationRepository $reservationRepository, ClientsRepository $clientsRepository): Response
     {
-
-       $reservation = $reservationRepository->findByExampleField('2018-01-12', '2018-12-12');
+      $user = $this->getUser();
+      $client = $clientsRepository->find($user);
+    //    $reservation = $reservationRepository->findBy('clientId');
      
-        return $this->render('reservation/index.html.twig', [
-            'reservations' => $reservation,
+        return $this->render('reservation/sucess.html.twig', [
+            // 'reservations' => $reservation,
+            'reservations'=> $client
         ]);
     }
 
@@ -92,10 +96,34 @@ class ReservationController extends AbstractController
     #[Route('/{id}', name: 'app_reservation_delete', methods: ['POST'])]
     public function delete(Request $request, Reservation $reservation, ReservationRepository $reservationRepository): Response
     {
+     
         if ($this->isCsrfTokenValid('delete'.$reservation->getId(), $request->request->get('_token'))) {
             $reservationRepository->remove($reservation);
         }
 
         return $this->redirectToRoute('app_reservation_index', [], Response::HTTP_SEE_OTHER);
+    }
+    #[Route('/delete/{id}', name: 'app_reservation_delete_by_client', methods: ['POST'])]
+    public function delete_by_client(Request $request, Reservation $reservation, ReservationRepository $reservationRepository): Response
+    {
+        $client = ($request->request->get('client_id'));
+        
+        $interval = date_diff(new \DateTime(), $reservation->getDebut());
+        if ($interval->d > 3){
+
+        if ($this->isCsrfTokenValid('delete'.$reservation->getId(), $request->request->get('_token'))) {
+            $reservationRepository->remove($reservation);
+        }
+
+        return $this->redirectToRoute('app_clients_show', ['id' => $client], Response::HTTP_SEE_OTHER);
+            
+    }else{
+        $this->addFlash(
+            'warning',
+            'Vous ne pouvez pas annuler une réservation à moins de 3jours !'
+        );
+    }
+
+    return $this->redirectToRoute('app_clients_show', ['id' => $client], Response::HTTP_SEE_OTHER);
     }
 }

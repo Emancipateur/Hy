@@ -27,7 +27,7 @@ h1{
 
     background-color: $black;
     &:hover{
-        background: purple;
+        background: rgb(121, 47, 121);
      }
     
 }
@@ -44,7 +44,7 @@ h1{
         .suiteDescription{
             
             background: $purplegradient;
-            padding: 1rem;
+            padding: 2rem;
         }
 
         img{

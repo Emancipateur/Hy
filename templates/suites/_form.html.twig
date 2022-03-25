@@ -1,10 +1,15 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
-    	{% if app.request.attributes.get('_route') == 'app_suites_edit' %}
+
+
+
+{{ form_label(form.images, 'Astuce : Vous pouvez sélectionner plusieurs images a la fois en maintenant la touche CTRL') }}
+
+	{% if app.request.attributes.get('_route') == 'app_suites_edit' %}
         <h2>Images</h2>
         {% for image in suite.images %}
             <div>
-                <img src="{{ asset('/uploads/'~image.titre) }}" alt="" width="500">
+                <img src="{{ asset('./uploads/'~image.titre) }}" alt="" width="500">
 
                 {# On ajoute un lien permettant de supprimer une image (sera géré en Ajax) #}
                     <a href="{{ path('annonces_delete_image', {id: image.id})}}" data-delete data-token="{{ csrf_token('delete' ~ image.id )}}">Supprimer</a>

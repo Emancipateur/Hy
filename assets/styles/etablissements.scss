@@ -10,19 +10,27 @@
         color: #fff;
         margin-bottom: 0.5rem;
         // gap:1rem;
-
+        .etablissementVilleAdresse{
+            justify-content: space-around;
+            font-size: 0.8rem;
+        }
 
 .etablissementTop{
    padding: 1rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; 
 }
 .etablissementDescription{
-
+    font-size: 1rem;
     margin-top: 1rem;
     padding: 2rem;
 }
 
+.lienFlex{
+    display: flex;
+    flex-direction: row;
+        }
+    
     }
 
     .lienEtablissement{
@@ -34,9 +42,14 @@
       border-radius: 8px;
     }
 
-
 }
 
+#etablissements_description{
+
+        width: 100vw;
+        height: 300px;
+   
+}
 @media (min-width: 1250px) {
     .etablissementTop{
         margin: 1rem 5rem;

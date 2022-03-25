@@ -25,10 +25,7 @@
         border-radius: 8px;
       }
 
-      .lienFlex{
-display: flex;
-    }
-
+  
 
     .gerantEtablissementContent{
         display: flex;
@@ -37,6 +34,7 @@ display: flex;
         align-items: center;
         padding: 0.5rem 2rem;
         gap: 1rem;
+        margin-bottom: 2rem;
     }
     
 }
@@ -49,14 +47,16 @@ display: flex;
     justify-content: center;
     align-items: center;
     background-color:$purplegradient;
+  
 
     h2{
         margin: 1rem;
     }
     .gerantSuite{
        margin-bottom: 1rem;
+ 
         padding: 1rem;
-        width: 100vw;
+        width: 95vw;
         background-color: #333;
         color: white;
         display: flex;
@@ -71,6 +71,7 @@ display: flex;
         width: 100%;
         display: flex;
         justify-content: flex-end;
+        margin-right: 3rem;
     }
         .lienEtablissement{
       margin: 2rem;
@@ -79,5 +80,11 @@ display: flex;
       border: 1px solid #FFF;
       padding: 0.7rem;
       border-radius: 8px;
+    }
+
+    .suiteTitre{
+        display: flex;
+        flex-wrap: nowrap;
+        font-size: 2
     }
 }

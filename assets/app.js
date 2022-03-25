@@ -25,5 +25,7 @@ import React from 'react';
      <Items  />
    )
  }
- 
- ReactDOM.render(<App />, document.getElementById('root'));
+ document.getElementById('root') ?
+ ReactDOM.render(<App />, document.getElementById('root'))
+
+ : null;

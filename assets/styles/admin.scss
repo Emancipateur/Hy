@@ -1,16 +1,19 @@
-.lienFlex{
+.lienFlexAdmin{
 display: flex;
 flex-direction: column;
 
-    .lien{
+//     .lien{
 
-        margin: 2rem;
-        text-align: center;
-        font-size: 1.2rem;
-        border: 1px solid #FFF;
-        padding: 0.7rem;
-        border-radius: 8px;
-    }
+//         margin: 2rem;
+//         text-align: center;
+//         font-size: 1.2rem;
+//         border: 1px solid #FFF;
+//         padding: 0.7rem;
+//         border-radius: 8px;
+//         display: flex;
+// justify-content: center; /* align horizontal */
+// align-items: center
+//     }
 }
 
 .imageSuiteAdmin{
@@ -24,9 +27,6 @@ td{
     border: 1px solid black;
 }
 
-table{
-    // border: 1px solid black;
-}
 
 
 

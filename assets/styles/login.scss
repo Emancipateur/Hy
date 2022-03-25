@@ -1,13 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
 
-* {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;	
-	// font-family: Raleway, sans-serif;
-	
-}
-
 
 .login__h1{
     color : #FFF;
@@ -16,13 +8,15 @@
 }
 .container {
 	display: flex;
-	align-items: center;
+	// align-items: center;
 	justify-content: center;
-	 min-height: 100vh;
+	margin-top : 1rem;
+	//  min-height: 100vh;
 }
 
 .screen {		
-	background: linear-gradient(90deg, #5D54A4, #7C78B8);		
+	// background: linear-gradient(90deg, #5D54A4, #7C78B8);		
+	background: $purplegradient;
 	position: relative;	
 	height: 600px;
 	width: 350px;	
@@ -65,7 +59,8 @@
 .screen__background__shape2 {
 	height: 220px;
 	width: 220px;
-	background: #6C63AC;	
+	// background: #6C63AC;	
+	background: $purplegradient;
 	top: -172px;
 	right: 0;	
 	border-radius: 32px;
@@ -74,7 +69,8 @@
 .screen__background__shape3 {
 	height: 540px;
 	width: 190px;
-	background: linear-gradient(270deg, #5D54A4, #6A679E);
+	// background: linear-gradient(270deg, #5D54A4, #6A679E);
+	background: $purplegradient;	
 	top: -24px;
 	right: 0;	
 	border-radius: 32px;
@@ -83,7 +79,8 @@
 .screen__background__shape4 {
 	height: 400px;
 	width: 200px;
-	background: #7E7BB9;	
+	// background: #7E7BB9;	
+	background: $purplegradient;
 	top: 420px;
 	right: 50px;	
 	border-radius: 60px;
@@ -154,3 +151,61 @@
 	margin-left: auto;
 	color: #7875B5;
 }
+
+
+.newAccount{
+padding:  2rem
+	
+}
+@media (min-width: 1250px) {
+
+	.container{
+
+
+		
+		::-webkit-input-placeholder {
+			color: #FFF;
+		}
+		
+		:-moz-placeholder { 
+		color: #FFF;
+			opacity: 1;
+		}
+		
+		::-moz-placeholder {
+		color: #FFF;
+			opacity: 1;
+		}
+		
+		:-ms-input-placeholder {
+		color: #FFF;
+		}
+		margin-top: 10rem;
+	}
+	.screen{
+		
+	  height: 70%;
+		width: 70%;
+
+
+		input{
+			color: $white;
+		}
+	}
+
+	.screen__background__shape1{
+		height: 520px;
+		width: 520px;
+		background:$purplegradient;	
+		top: -50px;
+		right: 120px;	
+		border-radius: 0 72px 0 0;
+		font-size: 7rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		opacity: 0.8	;
+
+	}
+
+}	

@@ -1,0 +1,86 @@
+.clientHome{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+
+    .reservationClient{
+        // font-size: 1.3rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+        width: 99%;
+        border: 3px solid black;
+        border-radius: 25px;
+
+
+        h2{
+            margin-bottom: 1rem;
+        }
+    }
+
+    button{
+        background: #fff;
+        font-size: 14px;
+        margin-top: 30px;
+        padding: 16px 20px;
+        border-radius: 26px;
+        border: 1px solid #D4D3E8;
+        text-transform: uppercase;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        // width: 100%;
+        color: #4C489D;
+        box-shadow: 0px 2px 2px #5C5696;
+        cursor: pointer;
+        transition: .2s;
+    }
+}
+.h1newClient{
+    text-align: center;
+}
+form[name="clients"]{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    input{
+        border-radius: 12px;
+        margin: 1rem;
+        padding:0.5rem;
+      
+
+     
+}
+input:focus{
+    border: none;
+}
+
+
+.btn{
+    margin: 2rem;
+    text-align: center;
+    font-size: 1.2rem;
+    border: 1px solid #FFF;
+    padding: 0.7rem;
+    border-radius: 8px;
+    display: flex;
+justify-content: center; /* align horizontal */
+align-items: center
+}
+}
+
+// @media (min-width: 1250px) {
+//     .clientHome{
+//         flex-direction: row;
+//         flex-wrap: wrap;
+// }
+// }

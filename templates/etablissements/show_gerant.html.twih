@@ -30,7 +30,7 @@
                 <p>{{ suite.description }}</p>
                 <div class="gerantImageSuite">
                    {% for i in suite.images %}
-                    <img src="{{ asset('/uploads/'~i.titre) }}" alt="" width="400">
+                    <img src="{{ asset('./uploads/'~i.titre) }}" alt="" width="400">
                      {% endfor %}
                      </div>
                 <p>Tarif : {{ suite.prix }} € -     <a href="{{suite.lien}}">{{suite.lien}}</a></p>

@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reservation sucess{% endblock %}
+
+{% block body %}
+  
+    
+
+<div class="reservationSucessContent">
+              <h1>Votre réservation est confirmée !</h1>
+        {% for reservation in reservations.reservation %}
+  
+            <div class='reservationSucess'>
+            <h2>Résumé de votre réservation </h2>
+                <p>Id : # {{ reservation.id }}</p>
+                <p>Début : {{ reservation.debut ? reservation.debut|date('Y-m-d') : '' }}</p>
+                <p>Fin : {{ reservation.fin ? reservation.fin|date('Y-m-d') : '' }}</p>
+              
+                <p>Suite : {{ reservation.suites }}</p>
+                <p> Etablissement  {{ reservation.suites.etablissements.nom}}</p>
+              <p>Vous pouvez retrouver votre réservation à tout moment depuis votre         <a href="{{ path('app_clients_show', {'id': reservations.id}) }}">Espace Client</a></p>
+         </div>
+
+
+        {% else %}
+            <tr>
+                <p colspan="4">no records found</p>
+            </tr>
+        {% endfor %}
+         
+    
+    {# <a href="{{ path('app_reservation_new') }}">Create new</a> #}
+    </div>  
+{% endblock %}

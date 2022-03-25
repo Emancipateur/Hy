@@ -8,24 +8,26 @@
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 <h1 class="login__h1">Connexion</h1>
+	<span class='newAccount'>Pas encore de compte ? <a href="{{ path('app_clients_new') }}">Créer un compte</a> </span>	
 <div class="container">
 	<div class="screen">
 		<div class="screen__content">
 			<form class="login" action="{{ path('login') }}" method="post">
 				<div class="login__field">
 					<i class="login__icon fas fa-user"></i>
-					<input type="text" class="login__input" id="username" name="_username" value="{{ last_username }}" placeholder="User name / Email">
+					<input type="text" class="login__input" id="username" name="_username" value="{{ last_username }}" placeholder=" Email">
 				</div>
                       <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 				<div class="login__field">
 					<i class="login__icon fas fa-lock"></i>
-					<input type="password" class="login__input" placeholder="Password"  id="password" name="_password"/>>
+					<input type="password" class="login__input" placeholder="Password"  id="password" name="_password"/>
 				</div>
 				 <input type="hidden" name="{{ path('app_reservation_index') }} "> 
 				<button class="button login__submit">
-					<span class="button__text">Log In Now</span>
+					<span class="button__text">Se connecter</span>
 					<i class="button__icon fas fa-chevron-right"></i>
-				</button>				
+				</button>			
+			
 			</form>
 
 		</div>
@@ -33,7 +35,7 @@
 			<span class="screen__background__shape screen__background__shape4"></span>
 			<span class="screen__background__shape screen__background__shape3"></span>		
 			<span class="screen__background__shape screen__background__shape2"></span>
-			<span class="screen__background__shape screen__background__shape1"></span>
+			<span class="screen__background__shape screen__background__shape1">HYPNOS</span>
 		</div>		
 	</div>
 </div>

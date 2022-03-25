@@ -23,8 +23,8 @@ class EtablissementsController extends AbstractController
         ]);
     }
 
-    #[Route('/a', name: 'app_etablissements_a', methods: ['GET'])]
-    public function a(EtablissementsRepository $etablissementsRepository): Response
+    #[Route('/gerant', name: 'app_etablissements_a', methods: ['GET'])]
+    public function gerant(EtablissementsRepository $etablissementsRepository): Response
     {
 
        $etablissement = $etablissementsRepository->findByGerant($this->getUser()->getId());
@@ -57,7 +57,7 @@ class EtablissementsController extends AbstractController
             
             $entityManager->persist($etablissement);
             $entityManager->flush();
-            $etablissementsRepository->add($etablissement);
+            // $etablissementsRepository->add($etablissement);
             return $this->redirectToRoute('app_etablissements_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -74,7 +74,7 @@ public function deleteImage(Images $image, Request $request, EntityManagerInterf
         $nom = $image->getTitre();
         // On supprime le fichier
    
-        unlink($this->getParameter('./uploads').'/'.$nom);
+        unlink($this->getParameter('kernel.project_dir').'/public/uploads'.'/'.$nom);
 
         // On supprime l'entrée de la base
         $entityManager->remove($image);

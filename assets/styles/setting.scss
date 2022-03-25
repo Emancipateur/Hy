@@ -7,8 +7,12 @@
 
 $black : #333;
 $white : #FFF;
-$purplegradient : linear-gradient(90deg, #5D54A4, #7C78B8);		
+// $purplegradient : linear-gradient(90deg, #5D54A4, #7C78B8);		
+// $purplegradient:  linear-gradient(to left, #003973, #ecec85); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+$purplegradient:   linear-gradient(to left, #348f50, #56b4d3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
+
+// $purplegradient: linear-gradient(90deg, rgba(227,188,11,0.7035189075630253) 6%, rgba(36,50,111,0.9220063025210083) 29%);
 // body::before {
 //     content: "";
 //     position: absolute;
@@ -23,8 +27,10 @@ $purplegradient : linear-gradient(90deg, #5D54A4, #7C78B8);
 
 body {
   
-	background: linear-gradient(90deg, #C7C5F4, #776BCC);		
+ background : $purplegradient;
+	// background: linear-gradient(90deg, #C7C5F4, #776BCC);		
   overflow: overlay;
+  width: 100%;
 
 
 }
@@ -37,12 +43,13 @@ body::before {
     position:fixed;
     top:0px;
     bottom:0px;
-    width:100%; //Do not forget width
-    overflow-y:auto;
-
+    width:100%;
+    // overflow-y:auto;
+    overflow: overlay;
     opacity: .4; 
     z-index: -1;
-    background-color: rgb(108, 11, 173);
+    // background-color: rgb(108, 11, 173);
+    // $purplegradient : linear-gradient(90deg, #ce8b27, #9b6f0f);		
   }
 
   a{
@@ -67,7 +74,17 @@ body::before {
     border: 1px solid #FFF;
     padding: 0.7rem;
     border-radius: 8px;
+    display: flex;
+justify-content: center; /* align horizontal */
+align-items: center
+
 }
-
-
+.lienFlex{
+  display: flex;
+      }
   
+
+  .flash-notice{
+    background-color: red;
+    font-size: 15rem;
+  }
