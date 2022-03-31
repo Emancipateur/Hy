@@ -6,7 +6,7 @@
     <h1>Edit Suites</h1>
 
     {{ include('suites/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
-
+    {{ include('suites/_delete_form.html.twig') }}
     <a href="{{ path('app_suites_index') }}">Retour</a>
 
 {% endblock %}

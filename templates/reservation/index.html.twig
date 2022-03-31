@@ -6,40 +6,24 @@
     <h1>Reservation index</h1>
     
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Debut</th>
-                <th>Fin</th>
-                <th>Client</th>
-                <th>Suite</th>
-                <th>Eetablissement</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
         {% for reservation in reservations %}
   
-            <tr>
-                <td>{{ reservation.id }}</td>
-                <td>{{ reservation.debut ? reservation.debut|date('Y-m-d') : '' }}</td>
-                <td>{{ reservation.fin ? reservation.fin|date('Y-m-d') : '' }}</td>
-                <td>{{ reservation.clients }}</td>
-                <td>{{ reservation.suites }}</td>
-                <td>{{ reservation.suites.etablissements.nom}}</td>
-                <td>
-                    <a href="{{ path('app_reservation_show', {'id': reservation.id}) }}">show</a>
-                    <a href="{{ path('app_reservation_edit', {'id': reservation.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            <div class='adminListe'>
+                <p>{{ reservation.id }}</p>
+                <p>Suite : {{ reservation.suites }}</p>
+                <p>Etablissement : {{ reservation.suites.etablissements.nom}}</p>
+                <p>Debut : {{ reservation.debut ? reservation.debut|date('Y-m-d') : '' }}</p>
+                <p>Fin : {{ reservation.fin ? reservation.fin|date('Y-m-d') : '' }}</p>
+                <p>Client : {{ reservation.clients }}          <a href="{{ path('app_clients_admin_show', {'id': reservation.clients.id}) }}">Accéder au clients</a></p>
+                <p>
+      
+             {{ include('reservation/_delete_form.html.twig') }}
 
+                </p>
+            </div>
+ 
+         
+        {% endfor %}
+   
     {# <a href="{{ path('app_reservation_new') }}">Create new</a> #}
 {% endblock %}

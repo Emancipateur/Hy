@@ -17,6 +17,7 @@ class ClientsController extends AbstractController
     #[Route('/', name: 'app_clients_index', methods: ['GET'])]
     public function index(ClientsRepository $clientsRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         return $this->render('clients/index.html.twig', [
             'clients' => $clientsRepository->findAll(),
         ]);
@@ -48,18 +49,24 @@ class ClientsController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_clients_show', methods: ['GET'])]
-    public function show(Clients $client): Response
+    public function show($id, Clients $client): Response
     {
+       
+        $userId = $this->getUser()->getId();
+        if( $userId  == $id ){
+
        
         return $this->render('clients/show.html.twig', [
             'client' => $client,
-        ]);
-    }
+        ] );
+    } else{
+        return $this->redirectToRoute('app_clients_show', ['id' => $userId], Response::HTTP_SEE_OTHER);
+    }}
 
     #[Route('/{id}/edit', name: 'app_clients_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Clients $client, ClientsRepository $clientsRepository): Response
     {
-
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $form = $this->createForm(ClientsType::class, $client);
         $form->handleRequest($request);
 

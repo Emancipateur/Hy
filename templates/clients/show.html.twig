@@ -5,7 +5,6 @@
 {% block body %}
 
 
-
 <div class="clientHome">
     <h1>Espace Client</h1>
 <p>Votre Email : {{client.email}}</p>
@@ -20,14 +19,10 @@
 
 
 
-
-
 <form method="post" action="{{ path('app_reservation_delete_by_client', {'id': reservation.id}) }}" onsubmit="return confirm('Êtes vous sûr de vouloir annuler cette réservation, ceci annulera définitevement votre réservation ');">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ reservation.id) }}">
     <input type="hidden" name="client_id" value={{client.id}}>
     <button class="btn">Annuler cette réservation</button>
-
-    
 </form>
 
 </div>

@@ -34,9 +34,9 @@
 				<div
 					class="gerantImageSuite">
 			
-					<img src="{{ asset('./uploads/'~suite.images[0].titre) }}" alt="Image_suite" width="100%">
+					<img class='imgSuiteListe'src="{{ asset('./uploads/'~suite.images[0].titre) }}" alt="Image_suite" width="100%">
 				</div>
-				<p >{{ suite.description }}</p>
+				<p class='suiteDescriptionListe'>{{ suite.description }}</p>
 				<div class="tarif">
 					<p>Tarif :
 						{{ suite.prix }}

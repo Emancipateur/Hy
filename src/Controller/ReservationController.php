@@ -25,6 +25,25 @@ class ReservationController extends AbstractController
             'reservations' => $reservationRepository->findAll(),
         ]);
     }
+    #[Route('/resaByEta/{id}', name: 'app_reservation_eta', methods: ['GET'])]
+    public function resaByEta($id,ReservationRepository $reservationRepository): Response
+    {
+
+   $resa = ($reservationRepository->findByEtablissement($id));
+        return $this->render('reservation/index.html.twig', [
+            'reservations' => $resa,
+        ]);
+    }
+
+    #[Route('/resaBySuite/{id}', name: 'app_reservation_suite', methods: ['GET'])]
+    public function resaBySuite($id,ReservationRepository $reservationRepository): Response
+    {
+
+   $resa = ($reservationRepository->findBySuite($id));
+        return $this->render('reservation/index.html.twig', [
+            'reservations' => $resa,
+        ]);
+    }
     #[Route('/sucess', name: 'app_reservation_sucess', methods: ['GET'])]
     public function sucess(ReservationRepository $reservationRepository, ClientsRepository $clientsRepository): Response
     {
@@ -71,14 +90,26 @@ class ReservationController extends AbstractController
     #[Route('/{id}', name: 'app_reservation_show', methods: ['GET'])]
     public function show(Reservation $reservation): Response
     {
+
+        if ($reservation->getClients() == $this->getUser()) {
         return $this->render('reservation/show.html.twig', [
             'reservation' => $reservation,
         ]);
     }
+else{
+ 
+        return $this->render('clients/show.html.twig', [
+            'id' => $this->getUser()->getId(),
+        ]);
+}
+}
 
     #[Route('/{id}/edit', name: 'app_reservation_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Reservation $reservation, ReservationRepository $reservationRepository): Response
     {
+
+        
+        $this->denyAccessUnlessGranted('ROLE_GERANT');
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
 
@@ -96,6 +127,9 @@ class ReservationController extends AbstractController
     #[Route('/{id}', name: 'app_reservation_delete', methods: ['POST'])]
     public function delete(Request $request, Reservation $reservation, ReservationRepository $reservationRepository): Response
     {
+
+        
+        $this->denyAccessUnlessGranted('ROLE_GERANT');
      
         if ($this->isCsrfTokenValid('delete'.$reservation->getId(), $request->request->get('_token'))) {
             $reservationRepository->remove($reservation);

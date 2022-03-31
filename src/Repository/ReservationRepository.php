@@ -49,22 +49,32 @@ class ReservationRepository extends ServiceEntityRepository
     //  * @return Reservation[] Returns an array of Reservation objects
     //  */
 
-    public function findByExampleField($debut,$fin)
+    public function findByEtablissement($value)
     {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.debut = :val')
-            ->andWhere('r.fin = :val1')
-            ->orWhere('r.debut BETWEEN :val AND :val1')
-            ->orWhere('r.fin BETWEEN :val AND :val1')
-            // ->orWhere('reservation.debut <= :checkInDate AND reservation.endDate >= :checkOutDate')
-            ->setParameter('val', $debut)
-            ->setParameter('val1', $fin)
+        return $this->createQueryBuilder('s')
+
+        ->andWhere('sse = :val')
      
-        
-            ->orderBy('r.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
+        ->leftJoin('s.suites', 'ss')
+        ->leftJoin('ss.etablissements', 'sse')
+        ->setParameter('val', $value)
+        ->orderBy('s.id', 'ASC')
+        ->setMaxResults(30)
+        ->getQuery()
+        ->getResult()
+        ;
+    }
+    public function findBySuite($value)
+    {
+        return $this->createQueryBuilder('s')
+
+        ->andWhere('s.suites = :val')
+
+        ->setParameter('val', $value)
+        ->orderBy('s.id', 'ASC')
+        ->setMaxResults(30)
+        ->getQuery()
+        ->getResult()
         ;
     }
     

@@ -28,7 +28,7 @@ class Clients implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string')]
     private $password;
 
-    #[ORM\OneToMany(mappedBy: 'clients', targetEntity: Reservation::class)]
+    #[ORM\OneToMany(mappedBy: 'clients', targetEntity: Reservation::class, cascade: ['remove'])]
     private $reservation;
 
     public function __construct()

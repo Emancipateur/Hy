@@ -4,40 +4,22 @@
 
 {% block body %}
     <h1>Gerants index</h1>
-{{dump(gerants)}}
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Email</th>
-                <th>Roles</th>
-                <th>Password</th>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for gerant in gerants %}
-            <tr>
-                <td>{{ gerant.id }}</td>
-                <td>{{ gerant.email }}</td>
-                <td>{{ gerant.roles ? gerant.roles|json_encode : '' }}</td>
-                <td>{{ gerant.password }}</td>
-                <td>{{ gerant.nom }}</td>
-                <td>{{ gerant.prenom }}</td>
-                <td>
-                    <a href="{{ path('app_gerants_show', {'id': gerant.id}) }}">show</a>
-                    <a href="{{ path('app_gerants_edit', {'id': gerant.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
+        {% for gerant in gerants %}
+            <div class='adminListe'>
+                <p>{{ gerant.id }}</p>
+                <p>{{ gerant.email }}</p>
+                <p>{{ gerant.roles ? gerant.roles|json_encode : '' }}</p>
+                <p>{{ gerant.nom }}</p>
+                <p>{{ gerant.prenom }}</p>
+                <div>
+                    <a href="{{ path('app_gerants_show', {'id': gerant.id}) }}">Voir</a>
+                    <a href="{{ path('app_gerants_edit', {'id': gerant.id}) }}">Mofifier</a>
+                </div>
+            </div>
+        {% else %}
+        
+        {% endfor %}
+   
     <a href="{{ path('app_gerants_new') }}">Create new</a>
 {% endblock %}

@@ -70,19 +70,19 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
 
+         - { path: ^/clients/new, roles: PUBLIC_ACCESS }
+         - { path: ^/suites/\d+$, roles: PUBLIC_ACCESS }
+         - { path: ^/reservation/, roles: PUBLIC_ACCESS }
 
-         - { path: ^/etablissements/gerant, roles: ROLE_GERANT }
-         - { path: ^/suites/\d+$, roles: ROLE_CLIENT }
-         - { path: ^/etablissements/\d+$/edit, roles: ROLE_ADMIN }
-         - { path: ^/etablissements/new, roles: ROLE_ADMIN }
-         - { path: ^/etablissements, roles: ROLE_CLIENT}
-
+         
          - { path: ^/admin, roles: ROLE_ADMIN }
          - { path: ^/gerants, roles: ROLE_ADMIN }
+         - { path: ^/etablissements/gerant, roles: ROLE_GERANT }
+  
          - { path: ^/suites, roles: ROLE_GERANT}
          - { path: ^/clients, roles: ROLE_CLIENT }
-         - { path: ^/reservation, roles: ROLE_CLIENT }
-         - { path: ^/api, roles: ROLE_ADMIN }
+         - { path: ^/reservation/, roles: ROLE_CLIENT }
+        #  - { path: ^/api, roles: ROLE_ADMIN }
 
      
 when@test:

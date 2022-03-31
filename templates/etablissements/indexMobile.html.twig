@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hypnos{% endblock %}
+
+{% block body %}
+
+    <div class="etablissement">
+
+        {% for etablissement in etablissements %}
+ <div class="etablissementContent">
+                <div class="etablissementTop">
+                
+                <h2>{{ etablissement.nom }}</h2>
+
+
+                <div class="etablisementNomAdresseVille">
+                <p>{{ etablissement.ville }}</p>
+                <p>{{ etablissement.adresse }}</p>
+                </div>
+
+                </div>
+                                   {% for i in etablissement.image %}
+                      <img src="{{ asset('./uploads/'~i.titre) }}" alt="" width="100%">
+                   {% endfor %}
+                <p class="etablissementDescription">{{ etablissement.description }}</p>
+                <div class="lienEtablissement">
+                    <a  href="{{ path('app_etablissements_show', {'id': etablissement.id}) }}">Voir l'établissement & ses suites</a>
+                 </div>
+             
+              
+   
+</div>
+{% endfor %}
+</div>
+   
+{% endblock %}

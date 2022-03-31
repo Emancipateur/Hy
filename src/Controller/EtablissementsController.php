@@ -23,6 +23,16 @@ class EtablissementsController extends AbstractController
         ]);
     }
 
+    #[Route('/mobile', name: 'app_etablissements_index_mobile', methods: ['GET'])]
+    public function mobile(EtablissementsRepository $etablissementsRepository): Response
+    {
+        return $this->render('etablissements/indexMobile.html.twig', [
+            'etablissements' => $etablissementsRepository->findAll(),
+        ]);
+    }
+
+    
+
     #[Route('/gerant', name: 'app_etablissements_a', methods: ['GET'])]
     public function gerant(EtablissementsRepository $etablissementsRepository): Response
     {
@@ -32,10 +42,22 @@ class EtablissementsController extends AbstractController
             'etablissement' => $etablissement,
         ]);
     }
+    #[Route('/admin', name: 'app_etablissements_admin', methods: ['GET'])]
+    public function admin(EtablissementsRepository $etablissementsRepository): Response
+    {
+
+        return $this->render('etablissements/etablisssement_admin.html.twig', [
+            'etablissement' => $etablissementsRepository->findAll()
+        ]);
+    }
 
     #[Route('/new', name: 'app_etablissements_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EtablissementsRepository $etablissementsRepository, EntityManagerInterface $entityManager): Response
+    
+    
     {
+
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $etablissement = new Etablissements();
         $form = $this->createForm(EtablissementsType::class, $etablissement);
         $form->handleRequest($request);
@@ -69,7 +91,7 @@ class EtablissementsController extends AbstractController
     #[Route('/supprime/imageEta/{id}', name: 'etablissement_delete_image', methods: ['POST','GET'])]
 public function deleteImage(Images $image, Request $request, EntityManagerInterface $entityManager){
 
-
+    $this->denyAccessUnlessGranted('ROLE_ADMIN');
   
         $nom = $image->getTitre();
         // On supprime le fichier
@@ -97,6 +119,8 @@ public function deleteImage(Images $image, Request $request, EntityManagerInterf
     #[Route('/{id}/edit', name: 'app_etablissements_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Etablissements $etablissement, EtablissementsRepository $etablissementsRepository, EntityManagerInterface $entityManager): Response
     {
+
+        $this->denyAccessUnlessGranted('ROLE_GERANT');
         $form = $this->createForm(EtablissementsType::class, $etablissement);
         $form->handleRequest($request);
 
@@ -131,6 +155,8 @@ public function deleteImage(Images $image, Request $request, EntityManagerInterf
     #[Route('/{id}', name: 'app_etablissements_delete', methods: ['POST'])]
     public function delete(Request $request, Etablissements $etablissement, EtablissementsRepository $etablissementsRepository): Response
     {
+
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         if ($this->isCsrfTokenValid('delete'.$etablissement->getId(), $request->request->get('_token'))) {
             $etablissementsRepository->remove($etablissement);
         }

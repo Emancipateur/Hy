@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Etablissements index{% endblock %}
+
+{% block body %}
+  {% for etablissement in etablissement %}
+  <div class="gerantEtablissement">
+
+  <div class="lienFlex">
+<div class="lienEtablissement">
+  <a href="{{ path('app_suites_new') }}">Créer une nouvelle suite</a>
+  </div>
+  <div class="lienEtablissement">
+   <a href="{{ path('app_etablissements_edit', {'id': etablissement.id}) }}">Modifier Établissement</a>
+   </div>
+   </div>
+  
+<div class="lienEtablissement">
+
+    <h1>Votre Établissement : {{ etablissement.nom }}</h1>
+                        {% for i in etablissement.image %}
+                      <img src="{{ asset('./uploads/'~i.titre) }}" alt="" width="50%">
+                   {% endfor %}
+
+      
+              
+        <div class="gerantEtablissementContent">
+         
+                <p>{{ etablissement.ville }} - {{ etablissement.adresse }}</p>
+           
+                <p>{{ etablissement.description }}</p>
+        </div>
+        </div>
+         
+          </div>
+            {% endfor %}
+             
+
+    <div class="gerantContent">
+<h1>La Liste des suites</h1>
+   
+        {% for etablissement in etablissement %}
+            
+      
+        {% for suite in etablissement.suite %}
+           <div class="gerantSuite">
+                <h3>{{ suite.titre }}</h2>
+                <p>{{ suite.description }}</p>
+                <p>Tarif : {{ suite.prix }} € -     <a href="{{suite.lien}}">{{suite.lien}}</a></p>
+                <div class="gerantImageSuite">
+                   {% for i in suite.images %}
+                    <img src="{{ asset('./uploads/'~i.titre) }}" alt="" width="400">
+                     {% endfor %}
+                     </div>
+           
+                    <a href="{{ path('app_suites_show', {'id': suite.id}) }}">Voir</a>
+                    <a href="{{ path('app_suites_edit', {'id': suite.id}) }}">Modifier</a>
+     </div>
+        {% endfor %}
+          {% endfor %}
+        </tbody>
+    </table>
+
+
+
+   </div>
+{% endblock %}

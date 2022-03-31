@@ -16,13 +16,14 @@ import './styles/app.scss';
 import React from 'react';
  import ReactDOM from 'react-dom';
  import Items from './Items';
+import { CheckReservation } from './CheckReservation';
  
  export const App = () => {
    
 
    
    return (
-     <Items  />
+     <CheckReservation  />
    )
  }
  document.getElementById('root') ?

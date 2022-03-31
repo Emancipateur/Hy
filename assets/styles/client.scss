@@ -45,6 +45,16 @@
 .h1newClient{
     text-align: center;
 }
+
+.newCompte{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+   height: 100%;
+    width: 50%;
+    margin: auto;
+}
 form[name="clients"]{
     display: flex;
     flex-direction: column;
