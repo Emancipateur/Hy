@@ -7,25 +7,26 @@
 
 	<head>
 		<script>
-			if (screen.width <= 700) {
+			if (screen.width <= 1024) {
 document.location = "./mobile";
 }
+
 		</script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	</head>
 
 
-	<div class="etablissement">
+	<div class="etablissement_desktop">
 
 		{% for etablissement in etablissements %}
 			{% if loop.first %}
 				{% for i in etablissement.image %}
-					<div class="image active" style="background: url({{ asset('./uploads/'~i.titre) }} ) center/cover;">
+					<div class="image_desktop active" style="background: url({{ asset('./uploads/'~i.titre) }} ) center/cover;">
 					{% endfor %}
 				{% else %}
 
 					{% for i in etablissement.image %}
-						<div class="image " style="background: url({{ asset('./uploads/'~i.titre) }} ) center/cover;">
+						<div class="image_desktop " style="background: url({{ asset('./uploads/'~i.titre) }} ) center/cover;">
 
 						{% endfor %}
 					{% endif %}
@@ -53,69 +54,9 @@ document.location = "./mobile";
 		</div>
 
 		<script>
-			$(".image").click(function () {
-$(".image").removeClass("active");
+			$(".image_desktop").click(function () {
+$(".image_desktop").removeClass("active");
 $(this).addClass("active");
 })
 		</script>
-
-		<style>
-			@import url('https://fonts.googleapis.com/css?family=Expletus+Sans &display=swap');
-
-			body {
-				/* overflow: hidden; */
-				height: 100vh;
-			}
-			.etablissement {
-				display: flex;
-				min-width: 600px;
-				max-width: 100%;
-				height: 80%;
-				margin: 0 auto;
-				background: #333;
-				padding: 2rem;
-			}
-			.image {
-				min-width: 60px;
-				margin: 10px;
-				cursor: pointer;
-				transition: 0.5s cubic-bezier(0.05, 0.61, 0.41,0.95);
-				overflow: hidden;
-				position: relative;
-			}
-			.image.active {
-				flex-grow: 100;
-				max-width: 1000px;
-				margin: 0;
-				border-radius: 7px;
-				background-size: auto 100%;
-
-			}
-			.image:not(.active) {
-				flex-grow: 1;
-				border-radius: 5px;
-			}
-			.text-container {
-				width: 100%;
-				height: 100%;
-				padding: 2rem;
-				visibility: hidden;
-				transform: translateY(300px);
-				opacity: 0;
-				transition: all 0.8s ease;
-				background: linear-gradient(354deg, black 0%, transparent 72%);
-				color: white;
-				overflow: hidden;
-			}
-			.text {
-				position: absolute;
-				bottom: 1rem;
-			}
-			.active .text-container {
-				visibility: visible;
-				transform: translateY(0px);
-				opacity: 1;
-			}
-
-		</style>
 	{% endblock %}

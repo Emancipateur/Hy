@@ -19,7 +19,8 @@
         <div class="col">
          	{% if app.request.attributes.get('_route') == 'app_reservation_new' %}
             {{ form_widget(form.suites, {'value' : suite.id}) }}
-            {% endif %}
+        
+     {% endif %}
         </div>
 
 
