@@ -25,4 +25,4 @@ Gerant7@gmail.com
 
 client@test.com
 
-Tous les mot de passes sont : test
+Tous les mots de passes sont : test
