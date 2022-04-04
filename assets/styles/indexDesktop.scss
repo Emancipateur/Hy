@@ -1,7 +1,7 @@
 
 
 
-    @import url('https://fonts.googleapis.com/css?family=Expletus+Sans &display=swap');
+    // @import url('https://fonts.googleapis.com/css?family=Expletus+Sans &display=swap');
 
     body {
         /* overflow: hidden; */
@@ -57,4 +57,11 @@
         transform: translateY(0px);
         opacity: 1;
     }
-
+    .lienEtablissement{
+        margin: 2rem;
+        text-align: center;
+        font-size: 1.2rem;
+        border: 1px solid #FFF;
+        padding: 0.7rem;
+        border-radius: 8px;
+      }

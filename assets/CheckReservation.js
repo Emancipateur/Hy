@@ -73,7 +73,7 @@ useEffect(()=> {
 
 
 
-
+  // DateArray contient toute les jours réservés de la suite
   return (
     <Item  suite={suite} dateArray={dateArray}/>
   )
